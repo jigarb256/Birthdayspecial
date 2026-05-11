@@ -1,0 +1,290 @@
+import { useEffect, useState } from "react";
+
+const floatingHearts = Array.from({ length: 20 });
+
+export default function BirthdayWebsite() {
+  const [loading, setLoading] = useState(true);
+  const [showLetter, setShowLetter] = useState(false);
+  const [showHug, setShowHug] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const revealTimer = setTimeout(() => {
+        setShowLetter(true);
+      }, 700);
+
+      return () => clearTimeout(revealTimer);
+    }
+  }, [loading]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen overflow-hidden bg-gradient-to-br from-pink-500 via-rose-400 to-purple-500 flex items-center justify-center relative px-6">
+        {floatingHearts.map((_, i) => (
+          <div
+            key={i}
+            className="absolute text-white/30 animate-bounce"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              fontSize: `${Math.random() * 30 + 15}px`,
+              animationDuration: `${Math.random() * 3 + 2}s`,
+            }}
+          >
+            💖
+          </div>
+        ))}
+
+        <div className="text-center z-10 space-y-8">
+          <div className="text-7xl animate-pulse">💌</div>
+
+          <h1 className="text-5xl md:text-7xl font-black text-white leading-tight drop-shadow-2xl">
+            Someone Special
+            <br />
+            Has A Surprise 🎁
+          </h1>
+
+          <div className="flex items-center justify-center gap-3 text-white text-xl font-semibold">
+            <span className="animate-ping">💗</span>
+            <span>Loading memories...</span>
+            <span className="animate-ping">💗</span>
+          </div>
+
+          <div className="w-72 h-3 bg-white/20 rounded-full overflow-hidden mx-auto backdrop-blur-sm">
+            <div className="h-full w-full bg-white animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-300 via-purple-200 to-blue-200 overflow-hidden text-gray-800 relative">
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_left,_white,_transparent_30%),radial-gradient(circle_at_bottom_right,_white,_transparent_30%)]"></div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-12 space-y-12">
+        {floatingHearts.map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-bounce opacity-30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              fontSize: `${Math.random() * 20 + 15}px`,
+              animationDuration: `${Math.random() * 5 + 3}s`,
+            }}
+          >
+            ✨
+          </div>
+        ))}
+
+        <div className="text-center space-y-6">
+          <div className="inline-block px-6 py-2 rounded-full bg-white/20 backdrop-blur-md text-white font-semibold shadow-lg animate-pulse">
+            Made Especially For Her 💖
+          </div>
+
+          <h1 className="text-6xl md:text-7xl font-black text-white drop-shadow-lg animate-pulse">
+            Happy Birthday 💖
+          </h1>
+
+          <p className="text-xl md:text-2xl text-white/90 font-medium">
+            A little corner of the internet made just for you 🌸
+          </p>
+        </div>
+
+        <div
+          className={`grid md:grid-cols-2 gap-8 items-start transition-all duration-1000 ${
+            showLetter
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="bg-white/70 backdrop-blur-lg rounded-[2rem] shadow-2xl p-8 hover:scale-[1.02] transition duration-300">
+            <div className="space-y-6">
+              <h2 className="text-4xl font-bold text-pink-600">
+                A Letter For You 💌
+              </h2>
+
+              <img
+                src="IMG-20260511-WA0110.jpg"
+                alt="memory"
+                className="rounded-3xl w-full h-72 object-cover shadow-lg"
+              />
+
+              <div className="space-y-6 text-left text-gray-700 leading-relaxed text-lg">
+                <p>
+                  Happy Birthday 💖<br /><br />
+                  First of all… thank you.<br />
+                  Thank you so much for coming into my life.
+                  I genuinely don’t know how things became so special with you so naturally,
+                  but they did… and now I honestly can’t imagine my days without your presence in them.
+                </p>
+
+                <p>
+                  I still remember the very first ride we went on together — View Point / Khandi.
+                  And somehow… it still feels like yesterday.
+                </p>
+
+                <p>
+                  You are honestly the first person with whom time always feels less.
+                  No matter how long we talk, it still feels incomplete 😭💖
+                </p>
+
+                <div className="bg-pink-100/70 rounded-3xl p-5 space-y-3 shadow-inner">
+                  <h3 className="text-2xl font-bold text-pink-600">
+                    Our Favorite Memories ✨
+                  </h3>
+
+                  <ul className="space-y-3">
+                    <li>🌧️ <strong>View Point Ride</strong> — Full rain while returning. Full movie vibes.</li>
+                    <li>💖 <strong>Khand Ride</strong> — Waterfalls with you felt magical.</li>
+                    <li>🌄 <strong>Baner Hill Date</strong> — Our first proper alone ride.</li>
+                    <li>🌙 <strong>Night Rides</strong> — Pure sukoon after tiring days.</li>
+                    <li>🎶 <strong>Concerts</strong> — Arijit Singh, A.R. Rahman & Aditya Gadhvi ×2.</li>
+                    <li>🏝️ <strong>Kokan Trip</strong> — One of the happiest phases ever.</li>
+                    <li>🏢 <strong>Office Rides</strong> — Secretly the best part of office life 😭</li>
+                  </ul>
+                </div>
+
+                <p>
+                  And honestly… I just want all of this to become double.
+                  More rides. More concerts. More random plans.
+                  More memories. More happiness with you.
+                </p>
+
+                <div className="bg-purple-100/70 rounded-3xl p-5 shadow-inner space-y-4">
+                  <h3 className="text-2xl font-bold text-purple-600">
+                    Even Our Fights Matter 💭
+                  </h3>
+
+                  <p>
+                    I still remember our first fight on 30th August near your scooty 😭
+                    I got so angry… but when your message came later,
+                    I felt so happy that I still cannot explain it properly.
+                  </p>
+
+                  <p>
+                    Then came the watch misunderstanding and our long Diwali fight.
+                    I know most of it happened because of my overthinking 😭
+                    But thank you for always staying calm and making me understand things.
+                  </p>
+
+                  <p>
+                    The reason I’m mentioning all this is because I don’t just remember our best days.
+                    I remember the difficult days too — because they are also part of our journey.
+                  </p>
+                </div>
+
+                <p>
+                  I know birthdays can feel emotional because you miss your mom deeply.
+                  Nobody can ever take her place.
+                  But I just want you to know that I’ll always stand beside you
+                  during your good days and your bad days.
+                </p>
+
+                <p>
+                  Thank you for trusting me with your emotions, your memories,
+                  and such an important part of your life.
+                </p>
+
+                <p className="text-xl font-semibold text-pink-600">
+                  I’m truly very lucky to have you 💖
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white/70 backdrop-blur-lg rounded-[2rem] shadow-2xl p-8 hover:scale-[1.02] transition duration-300 flex flex-col">
+            <div className="space-y-6 flex-1 flex flex-col">
+              <h2 className="text-4xl font-bold text-purple-600">
+                A Video Surprise 🎬
+              </h2>
+
+              <div className="rounded-3xl overflow-hidden shadow-xl bg-black h-[350px]">
+                <video controls className="w-full h-full object-cover">
+                  <source src="Video Project 5.mp4" type="video/mp4" />
+                </video>
+              </div>
+
+              <p className="text-lg text-gray-700">
+                Replace your-video.mp4 with your actual birthday video.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative bg-white/70 backdrop-blur-lg rounded-[2rem] shadow-2xl p-10 overflow-hidden text-center">
+          <div className="absolute -top-10 -right-10 text-9xl opacity-10 rotate-12">
+            💖
+          </div>
+
+          <div className="relative z-10 space-y-6">
+            <h2 className="text-5xl font-black text-pink-600">
+              One More Thing... 🌸
+            </h2>
+
+            <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+              No matter how much time passes, you’ll always be one of my favorite people.
+              Thank you for existing and making life brighter ✨
+            </p>
+
+            <div className="relative flex flex-col items-center justify-center pt-4">
+              <button
+                onClick={() => setShowHug(!showHug)}
+                className="mt-4 px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white text-xl font-bold shadow-2xl hover:scale-110 transition duration-300 animate-pulse"
+              >
+                Sending Virtual Hugs 🤍
+              </button>
+
+              {showHug && (
+                <div className="mt-8 flex flex-col items-center animate-bounce">
+                  <div className="relative w-52 h-24 flex items-center justify-center">
+                    <div className="absolute left-0 text-7xl animate-[hugLeft_1s_ease-in-out_infinite]">
+                      🫲
+                    </div>
+
+                    <div className="absolute right-0 text-7xl animate-[hugRight_1s_ease-in-out_infinite]">
+                      🫱
+                    </div>
+
+                    <div className="text-5xl animate-pulse">🥺💖</div>
+                  </div>
+
+                  <p className="text-pink-600 font-semibold text-lg mt-3 animate-pulse">
+                    Tightest virtual hug for you 🤍
+                  </p>
+                </div>
+              )}
+
+              <style>{`
+                @keyframes hugLeft {
+                  0% { transform: translateX(0px); }
+                  50% { transform: translateX(45px) rotate(12deg); }
+                  100% { transform: translateX(0px); }
+                }
+
+                @keyframes hugRight {
+                  0% { transform: translateX(0px); }
+                  50% { transform: translateX(-45px) rotate(-12deg); }
+                  100% { transform: translateX(0px); }
+                }
+              `}</style>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center text-white text-xl font-semibold pb-6">
+          Made with love, memories & chaos 💕
+        </div>
+      </div>
+    </div>
+  );
+}
